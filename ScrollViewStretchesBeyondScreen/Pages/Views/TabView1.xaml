@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:ScrollViewStrechesBeyondScreen.Pages.Views"
+             xmlns:viewModels="clr-namespace:ScrollViewStrechesBeyondScreen.ViewModels"
+             xmlns:picker="clr-namespace:ScrollViewStrechesBeyondScreen.Pages.Views.Controls.CustomPicker"
+             x:DataType="viewModels:CustomPopupViewModel"
+             x:Class="ScrollViewStrechesBeyondScreen.Pages.Views.TabView1">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BorderStyleView" TargetType="Border">
+                <Setter Property="Background" Value="{StaticResource White}" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 10, 10, 10, 10" />
+                <Setter Property="Margin" Value="15" />
+                <Setter Property="Opacity" Value="0.9" />
+                <Setter Property="Padding" Value="0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ScrollView HorizontalOptions="StartAndExpand">
+        <Grid RowDefinitions="Auto">
+
+            <views:BackgroundImageView x:Name="BackgroundImage" VerticalOptions="Start"/>
+
+            <Grid RowDefinitions="Auto, Auto, *">
+
+                <!-- Border 1:  Custom Picker Control for Saved Store Name and Save-Button -->
+                <Border Grid.Row="0" Style="{StaticResource BorderStyleView}">
+                    <Grid ColumnDefinitions="*, Auto" Margin="15">
+                        <picker:CustomPickerControl Grid.Column="0" Text="{Binding SelectedSavedStoreName, Mode=TwoWay}" Placeholder="Saved Store..." BorderColor="{x:StaticResource Gray400}" Padding="0, 0, 25, 0" Margin="5, 0, 0, 0"/>
+
+                        <!--Save Button-->
+                        <Button Grid.Column="1" Text="Save" HeightRequest="35" WidthRequest="100" FontAutoScalingEnabled="True" VerticalOptions="FillAndExpand" Padding="15, 7, 15, 10"/>
+                    </Grid>
+                </Border>
+
+            </Grid>
+
+        </Grid>
+    </ScrollView>
+
+</ContentView>
