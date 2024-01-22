@@ -7,30 +7,30 @@ public partial class BackgroundImageView : ContentView
 		InitializeComponent();
 	}
 
-    protected override void OnSizeAllocated(double width, double height)
+    protected override Size ArrangeOverride(Rect bounds)
     {
-        base.OnSizeAllocated(width, height);
-
         if (BackgroundImage == null)
         {
-            return;
+            return base.ArrangeOverride(bounds);
         }
 
 #if IOS
-        if (height > 0)
+        if (this.Height > 0)
         {
-            BackgroundImage.HeightRequest = height * 0.7;
+            BackgroundImage.HeightRequest = this.Height * 0.7;
         }
 #endif
 #if ANDROID
-        if (height > width)
+        if (this.Height > this.Width)
         {
-            BackgroundImage.HeightRequest = height * 0.7;
+            BackgroundImage.HeightRequest = this.Height * 0.7;
         }
         else
         {
-            BackgroundImage.HeightRequest = height;
+            BackgroundImage.HeightRequest = this.Height;
         }
 #endif
+
+        return base.ArrangeOverride(bounds);
     }
 }
